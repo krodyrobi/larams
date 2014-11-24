@@ -17,6 +17,26 @@ Route::get('/', array('as' => 'home', function () {
 }));
 
 
+Route::get('password/reset', array(
+  'uses' => 'RemindersController@getRemind',
+  'as' => 'password.remind'
+));
+
+Route::post('password/reset', array(
+  'uses' => 'RemindersController@postRemind',
+  'as' => 'password.request'
+));
+
+Route::get('password/reset/{token}', array(
+  'uses' => 'RemindersController@getReset',
+  'as' => 'password.reset'
+));
+
+Route::post('password/reset/{token}', array(
+  'uses' => 'RemindersController@postReset',
+  'as' => 'password.update'
+));
+
 
 Route::get('login', array('as' => 'login', function () {
 	return View::make('login');
