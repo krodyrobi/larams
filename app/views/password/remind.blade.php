@@ -1,6 +1,6 @@
 @if (Session::has('error'))
-  {{ trans(Session::get('reason')) }}
-@elseif (Session::has('success'))
+  {{ trans(Session::get('error')) }}
+@elseif (Session::has('status'))
   An email with the password reset has been sent.
 @endif
  
