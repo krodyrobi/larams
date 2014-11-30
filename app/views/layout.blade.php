@@ -24,7 +24,6 @@
                     <li>{{ HTML::linkRoute('logout', 'Logout ('.Auth::user()->username.')') }}</li>
                 @else
                     <li>{{ HTML::linkRoute('login', 'Login') }}</li>
-                    <li>{{ HTML::linkRoute('register', 'Register') }}</li>
                 @endif
             </ul>
         </div><!-- end nav -->

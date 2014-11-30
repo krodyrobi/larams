@@ -13,5 +13,4 @@ class UserLogin extends BaseController {
         else
             return Redirect::to('login');
     }
-
 }
