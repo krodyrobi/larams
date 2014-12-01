@@ -86,14 +86,14 @@ Route::filter('csrf', function()
 
 
 Route::filter('guest', function() {
-        if (Auth::check()) 
+        if (Sentry::check())
                 return Redirect::route('home')
                         ->with('flash_notice', 'You are already logged in!');
 });
 
 
 Route::filter('auth', function() {
-        if (Auth::guest())
+        if (!Sentry::check())
                 return Redirect::route('login')
                         ->with('flash_error', 'You must be logged in to view that page!');
 });

@@ -27,6 +27,11 @@
             {{Form::label('password_confirmation','Password Confirm')}}
             {{Form::password('password_confirmation',array('class' => 'form-control'))}}
         </div>
+
+        <div class="form-group">
+            {{Form::label('account_type','Account Type')}}<br/>
+            {{Form::select('account_type', array('Admin' => 'Admin', 'Editor' => 'Editor'), 'Admin');}}
+        </div>
         <p>{{ Form::submit('Register') }}</p>
         {{ Form::close() }}
     </div>

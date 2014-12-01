@@ -32,7 +32,14 @@ class UsersController extends \BaseController {
 	 */
 	public function store()
 	{
-        $data = Input::only(['username','email','password','password_confirmation']);
+        $data = Input::only(['username','email','password','password_confirmation', 'account_type']);
+        //$type = Input::get('account_type');
+/*        $data= array(
+            'username' => Input::get('username'),
+            'email' => Input::get('email'),
+            'password' => Input::get('password'),
+            'activated' => true,
+        );*/
 
         $validator = Validator::make(
             $data,
@@ -47,18 +54,37 @@ class UsersController extends \BaseController {
         if($validator->fails()){
             return Redirect::route('register')->withErrors($validator)->withInput();
         }
-/*       $hashed=Hash::make($data->password);
-        $data['password' =>]=;
-]=;
-        $data->save();*/
+        $type = $data['account_type'];
+        $data = array_except($data, array('password_confirmation','account_type'));
+        $group = Sentry::findGroupByName($type);
 
-        $newUser = User::create($data);
-        if($newUser){
-            Auth::login($newUser);
-            return Redirect::route('profile');
+
+        try {
+            $newUser = Sentry::register($data);
+            $data = array_except($data, array('email'));
+            if ($newUser) {
+                Sentry::authenticate($data, false);
+                $newUser->addGroup($group);
+                return Redirect::route('profile');
+
+            } else
+                return Redirect::route('register')->withErrors($validator)->withInput();
         }
-        else
-            return Redirect::route('register')->withErrors($validator)->withInput();
+        catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+        {
+            $error= 'Login field is required.';
+            return Redirect::route('register')->withErrors($error)->withInput();
+        }
+        catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+        {
+            $error= 'Password field is required.';
+            return Redirect::route('register')->withErrors($error)->withInput();
+        }
+        catch (Cartalyst\Sentry\Users\UserExistsException $e)
+        {
+            $error= 'User with this login already exists.';
+            return Redirect::route('register')->withErrors($error)->withInput();
+        }
 
     }
 
@@ -141,25 +167,67 @@ class UsersController extends \BaseController {
             return Redirect::route('login')->withErrors($validator)->withInput();
         }
 
+    try {
 
-        if(Auth::attempt($userdata))
-            return Redirect::to('admin');
+        if (Sentry::authenticateAndRemember($userdata))
+            return Redirect::to('dashboard');
         else
             return Redirect::route('login')->withInput();
     }
+    catch (Cartalyst\Sentry\Users\LoginRequiredException $e)
+    {
+        $error= 'Login field is required.';
+        return Redirect::route('login')->withErrors($error)->withInput();
+    }
+    catch (Cartalyst\Sentry\Users\PasswordRequiredException $e)
+    {
+        $error= 'Password field is required.';
+        return Redirect::route('login')->withErrors($error)->withInput();
+    }
+    catch (Cartalyst\Sentry\Users\WrongPasswordException $e)
+    {
+        $error= 'Wrong password, try again.';
+        return Redirect::route('login')->withErrors($error)->withInput();
+    }
+    catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
+    {
+        $error= 'User was not found.';
+        return Redirect::route('login')->withErrors($error)->withInput();
+    }
+    catch (Cartalyst\Sentry\Users\UserNotActivatedException $e)
+    {
+        $error= 'User is not activated.';
+        return Redirect::route('login')->withErrors($error)->withInput();
+    }
+
+// The following is only required if the throttling is enabled
+        catch (Cartalyst\Sentry\Throttling\UserSuspendedException $e)
+        {
+            $error= 'User is suspended.';
+            return Redirect::route('login')->withErrors($error)->withInput();
+        }
+        catch (Cartalyst\Sentry\Throttling\UserBannedException $e)
+        {
+            $error= 'User is banned.';
+            return Redirect::route('login')->withErrors($error)->withInput();
+        }
+
+
+    }
+
 
     public function logout()
     {
-        if(Auth::check()){
-            Auth::logout();
+        if(Sentry::check()){
+            Sentry::logout();
         }
         return Redirect::route('login');
 
     }
 
-    public function admin()
+    public function dashboard()
     {
-        return View::make('admin');
+        return View::make('dashboard');
     }
 
 

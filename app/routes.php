@@ -47,7 +47,7 @@ Route::get('login', array('as' => 'login', 'uses' => 'UsersController@login'));
 
 Route::post('/login', array('as' => 'login', 'uses' => 'UsersController@handleLogin'));
 
-Route::get('/admin', array('as' => 'admin', 'uses' => 'UsersController@admin'));
+Route::get('/dashboard', array('as' => 'dashboard', 'uses' => 'UsersController@dashboard'));
 
 Route::get('/logout', array('as' => 'logout', 'uses' => 'UsersController@logout'));
 

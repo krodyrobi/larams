@@ -1,6 +1,11 @@
 @extends('layout')
 
 @section('content')
-  <h2>Welcome "{{ Auth::user()->username }}" to the protected page!</h2>
-  <p>Your user ID is: {{ Auth::user()->id }}</p>
+@if(Sentry::check())
+
+  <h2>Welcome "{{ Sentry::getUser()->username }}" to the protected page!</h2>
+  <p>Your user ID is: {{ Sentry::getUser()->id }}</p>
+
+
+@endif
 @stop
