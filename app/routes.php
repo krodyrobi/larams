@@ -38,48 +38,13 @@ Route::post('password/reset/{token}', array(
 ));
 
 
-/*Route::get('login', array('as' => 'login', function () {
-	return View::make('login');
-}))->before('guest');*/
-
-
-Route::get('login', array('as' => 'login', 'uses' => 'UsersController@login'));
-
+Route::get('login', array('as' => 'login', 'uses' => 'UsersController@login'))->before('guest');
 Route::post('/login', array('as' => 'login', 'uses' => 'UsersController@handleLogin'));
+Route::get('/dashboard', array('as' => 'dashboard', 'uses' => 'UsersController@dashboard'))->before('auth');
+Route::get('/logout', array('as' => 'logout', 'uses' => 'UsersController@logout'))->before('auth');
+Route::get('/register', array('as' => 'register', 'uses' => 'UsersController@create'))->before('guest');
+Route::post('/register', array('as' => 'register', 'uses' => 'UsersController@store'))->before('guest');
 
-Route::get('/dashboard', array('as' => 'dashboard', 'uses' => 'UsersController@dashboard'));
-
-Route::get('/logout', array('as' => 'logout', 'uses' => 'UsersController@logout'));
-
-Route::get('/register', array('as' => 'register', 'uses' => 'UsersController@create'));
-
-Route::post('/register', array('as' => 'register', 'uses' => 'UsersController@store'));
-
-/*Route::post('login', function () {
-	$user = array(
-            'username' => Input::get('username'),
-            'password' => Input::get('password')
-        );
-        
-        if (Auth::attempt($user)) {
-            return Redirect::route('admin')
-                ->with('flash_notice', 'You are successfully logged in.');
-        }
-        
-        // authentication failure! lets go back to the login page
-        return Redirect::route('login')
-            ->with('flash_error', 'Your username/password combination was incorrect.')
-            ->withInput();
-});*/
-
-
-
-/*Route::get('logout', array('as' => 'logout', function () {
-    Auth::logout();
-
-    return Redirect::route('home')
-        ->with('flash_notice', 'You are successfully logged out.');
-}))->before('auth');*/
 
 Route::get('profile', array('as' => 'profile', function () {
 	return View::make('profile');

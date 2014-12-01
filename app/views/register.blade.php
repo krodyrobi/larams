@@ -4,12 +4,15 @@
 
 
 <div class="col-md-4 col-md-offset-4">
+        @if (Session::has('flash_error'))
+          {{ trans(Session::get('flash_error')) }}
+        @elseif (Session::has('status'))
+          An email with the password reset has been sent.
+        @endif
         <h2>Register here</h2>
-        {{ Form::open(array('route' => 'register', 'method' => 'post')) }}
-        @foreach ($errors->all() as $message)
-        {{$message}}
-        @endforeach
 
+
+        {{ Form::open(array('route' => 'register', 'method' => 'post')) }}
         <div class="form-group">
             {{Form::label('username','Username')}}
             {{Form::text('username', null,array('class' => 'form-control'))}}

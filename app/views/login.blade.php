@@ -1,14 +1,6 @@
 @extends('layout')
 
 @section('content')
-{{--{{ Form::open(array('route' => 'login', 'method' => 'post')) }}
-{{Form::label('email','Email')}}
-{{Form::text('email', null,array('class' => 'form-control'))}}
-{{Form::label('password','Password')}}
-{{Form::password('password',array('class' => 'form-control'))}}
-{{Form::submit('Login', array('class' => 'btn btn-primary'))}}
-{{ Form::close() }}--}}
-
 
     <h1>Login</h1>
 
