@@ -90,6 +90,6 @@ Route::filter('csrf', function()
 });
 
 
-Entrust::routeNeedsRole('admin*', 'Admin', function () {
+/*Entrust::routeNeedsRole('admin*', 'Admin', function () {
     return Redirect::guest('users/login');
-});
+});*/
