@@ -13,7 +13,10 @@
 
 App::before(function($request)
 {
-	//
+    App::error(function(AuthTokenNotAuthorizedException $exception) {
+        if(Request::ajax())
+            return Response::json(array('error' => $exception->getMessage()), $exception->getCode());
+    });
 });
 
 

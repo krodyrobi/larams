@@ -125,6 +125,7 @@ return array(
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',		
 		'Zizaco\Confide\ServiceProvider',
 		'Zizaco\Entrust\EntrustServiceProvider',
+        'Tappleby\AuthToken\AuthTokenServiceProvider',
 
 	),
 
@@ -195,7 +196,9 @@ return array(
 
 		'Confide'           => 'Zizaco\Confide\Facade',
 		'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
+        'AuthToken'         => 'Tappleby\Support\Facades\AuthToken',
+        'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException'
 
-	),
+    ),
 
 );

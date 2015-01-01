@@ -11,13 +11,20 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/', array( 'as' => 'home', function()
 {
-	return View::make('hello');
-});
+	return View::make('layouts.default');
+}));
 
 // Confide RESTful route
 Route::get('users/confirm/{code}', 'UsersController@getConfirm');
 Route::get('users/reset_password/{token}', 'UsersController@getReset');
 Route::get('users/reset_password', 'UsersController@postReset');
 Route::controller( 'users', 'UsersController');
+
+Route::group(array('prefix' => 'api', 'before' => 'auth.token'), function() {
+
+    Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
+    Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
+    Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
+});
