@@ -7,4 +7,8 @@ use Zizaco\Entrust\HasRole;
 class User extends Eloquent implements ConfideUserInterface {
 	use ConfideUser;
 	use HasRole;
+
+    public function posts() {
+        return $this->hasMany('Post');
+    }
 }
