@@ -36,7 +36,7 @@ return array(
 	|
 	*/
 
-	'fulltext' => 'native', 
+	'fulltext' => 'default', //we have a lower MySQL version
 
 	/*
 	|--------------------------------------------------------------------------
