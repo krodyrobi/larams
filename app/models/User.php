@@ -11,7 +11,7 @@ class User extends Eloquent implements ConfideUserInterface {
 
     protected $hidden = array('password', 'remember_token', 'confirmation_code');
 
-    /*
+    /**
      * @Relation
      */
     public function posts() {

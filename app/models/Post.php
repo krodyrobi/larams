@@ -24,7 +24,7 @@ class Post extends Ardent implements SluggableInterface {
 
     protected $guarded = array('slug');
 
-    /*
+    /**
      * @Relation
      */
     public function author() {

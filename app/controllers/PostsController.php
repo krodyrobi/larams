@@ -7,9 +7,15 @@ class PostsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		return 'Hello';
+	public function index() {
+        //TODO make this removal of extra fields easier
+        //TODO make sure the meta total_count is set: _config=meta-total-count
+        
+        $input = Input::all();
+        unset($input['auth_token']);
+		$response = ApiHandler::parseMultiple(new Post(), ['title', 'body'], $input);
+
+        return $response->getResponse();
 	}
 
 
