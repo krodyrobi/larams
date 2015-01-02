@@ -127,6 +127,7 @@ return array(
 		'Zizaco\Entrust\EntrustServiceProvider',
         'Tappleby\AuthToken\AuthTokenServiceProvider',
         'Marcelgwerder\ApiHandler\ApiHandlerServiceProvider',
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
 
 	),
 

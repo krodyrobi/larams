@@ -11,7 +11,8 @@
 		"zizaco/entrust": "1.2.*@dev",
 		"barryvdh/laravel-ide-helper": "~1.11",
         "tappleby/laravel-auth-token": "0.3.*",
-        "marcelgwerder/laravel-api-handler": "0.4.*"
+        "marcelgwerder/laravel-api-handler": "0.4.*",
+		"cviebrock/eloquent-sluggable": "~2.0"
 	},
 	"require-dev": {
     		"way/generators": "~2.0"
