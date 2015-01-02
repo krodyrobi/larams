@@ -13,10 +13,7 @@
 
 App::before(function($request)
 {
-    App::error(function(AuthTokenNotAuthorizedException $exception) {
-        if(Request::ajax())
-            return Response::json(array('error' => $exception->getMessage()), $exception->getCode());
-    });
+    //
 });
 
 
@@ -91,8 +88,3 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
-
-
-/*Entrust::routeNeedsRole('admin*', 'Admin', function () {
-    return Redirect::guest('users/login');
-});*/
