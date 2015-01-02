@@ -23,7 +23,8 @@ Route::get('users/reset_password', 'UsersController@postReset');
 Route::controller( 'users', 'UsersController');
 
 Route::group(array('prefix' => 'api', 'before' => 'auth.token'), function() {
-    Route::resource( 'posts', 'PostsController');
+    Route::resource( 'posts', 'PostsController',
+        array('except' => array('edit', 'create')));
 
     Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
     Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
