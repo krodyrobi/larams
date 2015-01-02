@@ -79,4 +79,16 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+
+
+//CUSTOM WORK
 require app_path() . '/composers.php';
+
+Event::listen('auth.token.valid', function($user) {
+    Auth::setUser($user);
+});
+
+App::error(function(AuthTokenNotAuthorizedException $exception) {
+    if(Request::ajax())
+        return Response::json(array('error' => $exception->getMessage()), $exception->getCode());
+});
