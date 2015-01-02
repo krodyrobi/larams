@@ -9,15 +9,18 @@ class PostsSeeder extends Seeder {
 	 */
 	public function run() {
         DB::table('posts')->delete();
+        $user = User::where('username','=','admin')->first();
 
         $post = new Post;
         $post->title = 'Random title';
         $post->body = 'RANDOM text for a post body';
-        $post->save();
+        $user->posts()->save($post);
+
 
         $post = new Post;
         $post->title = 'Random title';
         $post->body = 'RANDOM text for a post body #2';
+        $post->author_id = $user->id;
         $post->save();
 	}
 
