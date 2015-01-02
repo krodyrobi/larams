@@ -6,12 +6,12 @@
 	"type": "project",
 	"require": {
 		"laravel/framework": "4.2.*",
+        "laravelbook/ardent": "2.*",
 		"zizaco/confide": "~4.0@dev",
 		"zizaco/entrust": "1.2.*@dev",
 		"barryvdh/laravel-ide-helper": "~1.11",
         "tappleby/laravel-auth-token": "0.3.*",
-        "marcelgwerder/laravel-api-handler": "0.4.*",
-        "way/database": "dev-master"
+        "marcelgwerder/laravel-api-handler": "0.4.*"
 	},
 	"require-dev": {
     		"way/generators": "~2.0"

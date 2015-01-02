@@ -200,7 +200,6 @@ return array(
         'AuthToken'         => 'Tappleby\Support\Facades\AuthToken',
         'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException',
         'ApiHandler'        => 'Marcelgwerder\ApiHandler\Facades\ApiHandler',
-        'Model'             => 'Way\Database\Model',
 
     ),
 
