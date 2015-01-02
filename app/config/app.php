@@ -126,6 +126,7 @@ return array(
 		'Zizaco\Confide\ServiceProvider',
 		'Zizaco\Entrust\EntrustServiceProvider',
         'Tappleby\AuthToken\AuthTokenServiceProvider',
+        'Marcelgwerder\ApiHandler\ApiHandlerServiceProvider',
 
 	),
 
@@ -197,7 +198,8 @@ return array(
 		'Confide'           => 'Zizaco\Confide\Facade',
 		'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
         'AuthToken'         => 'Tappleby\Support\Facades\AuthToken',
-        'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException'
+        'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException',
+        'ApiHandler'        => 'Marcelgwerder\ApiHandler\Facades\ApiHandler',
 
     ),
 
