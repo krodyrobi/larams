@@ -13,10 +13,10 @@
 
 ClassLoader::addDirectories(array(
 
-	app_path().'/commands',
-	app_path().'/controllers',
-	app_path().'/models',
-	app_path().'/database/seeds',
+    app_path() . '/commands',
+    app_path() . '/controllers',
+    app_path() . '/models',
+    app_path() . '/database/seeds',
 
 ));
 
@@ -31,7 +31,7 @@ ClassLoader::addDirectories(array(
 |
 */
 
-Log::useFiles(storage_path().'/logs/laravel.log');
+Log::useFiles(storage_path() . '/logs/laravel.log');
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +46,8 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 |
 */
 
-App::error(function(Exception $exception, $code)
-{
-	Log::error($exception);
+App::error(function (Exception $exception, $code) {
+    Log::error($exception);
 });
 
 /*
@@ -62,9 +61,8 @@ App::error(function(Exception $exception, $code)
 |
 */
 
-App::down(function()
-{
-	return Response::make("Be right back!", 503);
+App::down(function () {
+    return Response::make("Be right back!", 503);
 });
 
 /*
@@ -78,25 +76,73 @@ App::down(function()
 |
 */
 
-require app_path().'/filters.php';
+require app_path() . '/filters.php';
 
 
 //CUSTOM WORK
 require app_path() . '/composers.php';
+require app_path() . '/errors.php';
 
-Event::listen('auth.token.valid', function($user) {
+Event::listen('auth.token.valid', function ($user) {
     Auth::setUser($user);
 });
 
-App::error(function(AuthTokenNotAuthorizedException $exception) {
+App::error(function (AuthTokenNotAuthorizedException $exception) {
     return Response::json(array('error' => $exception->getMessage()), $exception->getCode());
 });
 
-App::error(function(Marcelgwerder\ApiHandler\ApiHandlerException $exception) {
+App::error(function (Marcelgwerder\ApiHandler\ApiHandlerException $exception) {
     return Response::json(array('error' => $exception->getMessage()), $exception->getHttpCode());
 });
 
-App::error(function(Illuminate\Database\QueryException $exception) {
+App::error(function (Illuminate\Database\QueryException $exception) {
     if( Request::ajax() )
         return Response::json(array('error' => "Illegal query parameter"), 400);
+});
+
+App::error(function (Symfony\Component\HttpKernel\Exception\HttpException $e, $code) {
+    $headers = $e->getHeaders();
+
+    switch ($code) {
+        case 401:
+            $default_message = 'Invalid API key';
+            break;
+
+        case 403:
+            $default_message = 'Insufficient privileges to perform this action';
+            break;
+
+        case 404:
+            $default_message = 'The requested resource was not found';
+            break;
+
+        default:
+            $default_message = 'An error was encountered';
+    }
+
+    return Response::json(array(
+        'error' => $e->getMessage() ?: $default_message
+    ), $code, $headers);
+});
+
+
+/**
+ * Permission Exception Handler
+ */
+App::error(function (PermissionException $e) {
+    return Response::json(array("error" => $e->getMessage()), $e->getCode());
+});
+
+/**
+ * Validation Exception Handler
+ */
+App::error(function (ValidationException $e) {
+    return Response::json(array("error" => $e->getMessages()), $e->getCode());
+});
+
+/**
+ * Not Found Exception Handler
+ */
+App::error(function (NotFoundException $e) {
+    return Response::json(array("error" => $e->getMessage()), $e->getCode());
 });
