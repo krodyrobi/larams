@@ -5,28 +5,26 @@ class AuthTokenComposer {
     public function compose($view) {
         $rootUrl = rtrim(URL::route('home'), '/');
 
-        $jsConfig = isset($view->jsConfig) ? $view->jsConfig : array();
+        $config = isset($view->config) ? $view->config : array();
 
-        $jsConfig = array_merge(array(
+        $config = array_merge(array(
             'rootUrl' =>  $rootUrl
-        ), $jsConfig);
+        ), $config);
 
         if(Auth::check()) {
-
             $authToken = AuthToken::create(Auth::user());
             $publicToken = AuthToken::publicToken($authToken);
 
             $user = Auth::user();
-            $roles = $user->roles()->with('perms')->get()->toArray();
-            $userData = array_merge(
-                Auth::user()->toArray(),
-                array('auth_token' => $publicToken),
-                array('permissions'      => $roles)
-            );
 
-            $jsConfig['userData'] = $userData;
+            $userData = $user->toArray();
+            $userData['permissions'] = $user->getPermissions();
+            $config['user'] = $userData;
+
+            $config['auth_token'] = $publicToken;
+            $config['csrf_token'] = csrf_token();
         }
 
-        $view->with('jsConfig', $jsConfig);
+        $view->with('config', json_encode($config));
     }
 }
