@@ -3,11 +3,7 @@
 class PostsController extends \BaseController {
 //class PostsController extends ApiController {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
+
     public function index() {
         //TODO make this removal of extra fields easier
         //TODO make sure the meta total_count is set: _config=meta-total-count
@@ -24,48 +20,45 @@ class PostsController extends \BaseController {
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
+
     public function store() {
-        $status = Post::create(Input::all());
+        $post = new Post;
+        if($post->save())
+            return $post->toJson();
 
-        dd($status);
+        throw new ValidationException($post->errors());
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function show($id) {
-        //
+        $post = Post::with('author')->find($id);
+        if ( !$post )
+            throw new NotFoundException('Post Not Found');
+
+        return $post->toJson();
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function update($id) {
-        //
+        $post = Post::find($id);
+        if ( !$post )
+            throw new NotFoundException('Post Not Found');
+
+
+        if($post->save())
+            return $post->toJson();
+
+        throw new ValidationException($post->errors());
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     * @return Response
-     */
     public function destroy($id) {
-        //
+        $post = Post::find($id);
+        if ( !$post )
+            throw new NotFoundException('Post Not Found');
+
+        $post->delete();
+        return Response::json('', 204);
     }
 
 

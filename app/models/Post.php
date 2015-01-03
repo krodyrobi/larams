@@ -19,10 +19,12 @@ class Post extends Ardent implements SluggableInterface {
 
     public static $rules = array(
         'title' => 'required',
-        'body'  => 'required'
+        'body'  => 'required',
+        'author_id' => 'required|exists:users,id'
     );
 
-    protected $guarded = array('slug');
+    protected $fillable = array('title', 'body', 'author_id');
+    protected $guarded = array('slug', 'created_at', 'updated_at');
 
     /**
      * @Relation
