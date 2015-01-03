@@ -89,6 +89,14 @@ Event::listen('auth.token.valid', function($user) {
 });
 
 App::error(function(AuthTokenNotAuthorizedException $exception) {
-    if(Request::ajax())
-        return Response::json(array('error' => $exception->getMessage()), $exception->getCode());
+    return Response::json(array('error' => $exception->getMessage()), $exception->getCode());
+});
+
+App::error(function(Marcelgwerder\ApiHandler\ApiHandlerException $exception) {
+    return Response::json(array('error' => $exception->getMessage()), $exception->getHttpCode());
+});
+
+App::error(function(Illuminate\Database\QueryException $exception) {
+    if( Request::ajax() )
+        return Response::json(array('error' => "Illegal query parameter"), 400);
 });
