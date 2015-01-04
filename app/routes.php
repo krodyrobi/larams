@@ -11,8 +11,7 @@
 |
 */
 
-Route::get('/', array( 'as' => 'home', function()
-{
+Route::get('/', array( 'as' => 'home', 'before' => 'auth', function() {
 	return View::make('layouts.default');
 }));
 
@@ -22,7 +21,8 @@ Route::get('users/reset_password/{token}', 'UsersController@getReset');
 Route::get('users/reset_password', 'UsersController@postReset');
 Route::controller( 'users', 'UsersController');
 
-Route::group(array('prefix' => 'api', 'before' => 'auth.token'), function() {
+
+Route::group(array('prefix' => 'api'), function() {
     Route::resource( 'posts', 'PostsController',
         array('except' => array('edit', 'create')));
 
