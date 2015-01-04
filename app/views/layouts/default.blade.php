@@ -33,9 +33,9 @@
             (function( $ ) {
                 $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
                     if (config.auth_token)
-                        jqXHR.setRequestHeader('X-Auth-Token', config.auth_token);
+                        jqXHR.setRequestHeader('X-Authorization', config.auth_token);
                     if (config.csrf_token)
-                        jqXHR.setRequestHeader('_token', config.csrf_token);
+                        jqXHR.setRequestHeader('CSRF', config.csrf_token);
                 });
 
             })( jQuery );

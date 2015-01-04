@@ -1,5 +1,7 @@
 <?php
 
+use Chrisbjr\ApiGuard\ApiKey;
+
 class AuthTokenComposer {
 
     public function compose($view) {
@@ -12,16 +14,15 @@ class AuthTokenComposer {
         ), $config);
 
         if(Auth::check()) {
-            $authToken = AuthToken::create(Auth::user());
-            $publicToken = AuthToken::publicToken($authToken);
-
             $user = Auth::user();
+            $token = ApiKey::where('id', '=', $user->id)
+                ->orderBy('level', 'DESC')->first();
+
 
             $userData = $user->toArray();
-            $userData['permissions'] = $user->getPermissions();
             $config['user'] = $userData;
 
-            $config['auth_token'] = $publicToken;
+            $config['auth_token'] = $token->key;
             $config['csrf_token'] = csrf_token();
         }
 
