@@ -124,10 +124,9 @@ return array(
 
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',		
 		'Zizaco\Confide\ServiceProvider',
-		'Zizaco\Entrust\EntrustServiceProvider',
-        'Tappleby\AuthToken\AuthTokenServiceProvider',
-        'Marcelgwerder\ApiHandler\ApiHandlerServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider',
+        'Chrisbjr\ApiGuard\ApiGuardServiceProvider',
 
 	),
 
@@ -197,10 +196,6 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 
 		'Confide'           => 'Zizaco\Confide\Facade',
-		'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
-        'AuthToken'         => 'Tappleby\Support\Facades\AuthToken',
-        'AuthTokenNotAuthorizedException' => 'Tappleby\AuthToken\Exceptions\NotAuthorizedException',
-        'ApiHandler'        => 'Marcelgwerder\ApiHandler\Facades\ApiHandler',
 
     ),
 
