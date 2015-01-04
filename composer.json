@@ -10,9 +10,8 @@
 		"zizaco/confide": "~4.0@dev",
 		"zizaco/entrust": "1.2.*@dev",
 		"barryvdh/laravel-ide-helper": "~1.11",
-        "tappleby/laravel-auth-token": "0.3.*",
-        "marcelgwerder/laravel-api-handler": "0.4.*",
-		"cviebrock/eloquent-sluggable": "~2.0"
+		"cviebrock/eloquent-sluggable": "~2.0",
+        "chrisbjr/api-guard": "0.*"
 	},
 	"require-dev": {
     		"way/generators": "~2.0"
@@ -25,7 +24,8 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php",
-            "app/views/composers"
+            "app/views/composers",
+            "app/controllers/transformers"
 		]
 	},
 	"scripts": {
