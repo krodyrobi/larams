@@ -1,6 +1,5 @@
 <?php
 
-use Chrisbjr\ApiGuard\ApiKey;
 
 /**
  * UsersController Class
@@ -41,12 +40,6 @@ class UsersController extends Controller {
                 );
             }
 
-            $apiKey = new ApiKey;
-            $apiKey->key = $apiKey->generateKey();
-            $apiKey->user_id = $user->id;
-            $apiKey->level = 1;
-            $apiKey->ignore_limits = 0;
-            $apiKey->save();
 
             return Redirect::action('UsersController@getLogin')
                 ->with('notice', Lang::get('confide::confide.alerts.account_created'));
