@@ -5,7 +5,7 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('UsersTableSeeder');
-        $this->call('ApiKeysSeeder');
+        $this->call('PermissionsSeeder');
         $this->call('PostsSeeder');
 	}
 }
