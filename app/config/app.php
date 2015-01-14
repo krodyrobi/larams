@@ -125,8 +125,8 @@ return array(
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',		
 		'Zizaco\Confide\ServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-        'EllipseSynergie\ApiResponse\Laravel\ResponseServiceProvider',
-        'Chrisbjr\ApiGuard\ApiGuardServiceProvider',
+        'Frozennode\Administrator\AdministratorServiceProvider',
+        'Zizaco\Entrust\EntrustServiceProvider',
 
 	),
 
@@ -196,6 +196,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 
 		'Confide'           => 'Zizaco\Confide\Facade',
+        'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
 
     ),
 
