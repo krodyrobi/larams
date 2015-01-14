@@ -81,10 +81,3 @@ require app_path() . '/filters.php';
 
 //CUSTOM WORK
 require app_path() . '/composers.php';
-
-App::error(function(Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException $exception) {
-    if ( Request::ajax() )
-        return Response::json('', 405);
-
-    return Response::make('', 405);
-});
