@@ -1,32 +1,23 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
 
 Route::get('/', array( 'as' => 'home', 'before' => 'auth', function() {
 	return View::make('layouts.default');
 }));
 
-// Confide RESTful route
-Route::get('users/confirm/{code}', 'UsersController@getConfirm');
-Route::get('users/reset_password/{token}', 'UsersController@getReset');
-Route::get('users/reset_password', 'UsersController@postReset');
-Route::controller( 'users', 'UsersController');
+
+Route::get('users/create', 'UsersController@create');
+Route::post('users', 'UsersController@store');
+Route::get('users/login', 'UsersController@login');
+Route::post('users/login', 'UsersController@doLogin');
+Route::get('users/confirm/{code}', 'UsersController@confirm');
+Route::get('users/forgot_password', 'UsersController@forgotPassword');
+Route::post('users/forgot_password', 'UsersController@doForgotPassword');
+Route::get('users/reset_password/{token}', 'UsersController@resetPassword');
+Route::post('users/reset_password', 'UsersController@doResetPassword');
+Route::get('users/logout', 'UsersController@logout');
 
 
-Route::group(array('prefix' => 'api'), function() {
-    Route::resource( 'posts', 'PostsController',
-        array('except' => array('edit', 'create')));
-
-    Route::get('auth', 'Tappleby\AuthToken\AuthTokenController@index');
-    Route::post('auth', 'Tappleby\AuthToken\AuthTokenController@store');
-    Route::delete('auth', 'Tappleby\AuthToken\AuthTokenController@destroy');
+Route::get('test', function() {
+    return View::make('hello');
 });
