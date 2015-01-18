@@ -77,7 +77,7 @@ App::down(function () {
 */
 
 require app_path() . '/filters.php';
+require app_path() . '/helpers.php';
 
-
-//CUSTOM WORK
-require app_path() . '/composers.php';
+load_administrator_settings();
+Theme::init(Config::get('settings.site.theme'));
