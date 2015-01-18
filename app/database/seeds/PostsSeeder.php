@@ -9,18 +9,27 @@ class PostsSeeder extends Seeder {
 	 */
 	public function run() {
         DB::table('posts')->delete();
-        $user = User::where('username','=','admin')->first();
+        $admin = User::where('username','=','admin')->first();
+        $moderator = User::where('username','=','moderator')->first();
 
         $post = new Post;
         $post->title = 'Random title';
         $post->body = 'RANDOM text for a post body';
-        $user->posts()->save($post);
+        $admin->posts()->save($post);
 
 
         $post = new Post;
-        $post->title = 'Random title';
+        $post->title = 'Random title published';
         $post->body = 'RANDOM text for a post body #2';
-        $post->author_id = $user->id;
+        $post->author_id = $admin->id;
+        $post->status = 'published';
+        $post->save();
+
+        $post = new Post;
+        $post->title = 'Random title published by moderator';
+        $post->body = 'RANDOM text for a post body #2';
+        $post->author_id = $moderator->id;
+        $post->status = 'published';
         $post->save();
 	}
 

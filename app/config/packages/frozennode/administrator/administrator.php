@@ -53,6 +53,7 @@ return array(
 	 */
 	'menu' => array(
         'users',
+        'posts',
         'Settings' => array('settings.site')
     ),
 
