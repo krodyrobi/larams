@@ -119,7 +119,7 @@ return array(
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
-		'Illuminate\View\ViewServiceProvider',
+        'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',		
@@ -127,6 +127,7 @@ return array(
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Frozennode\Administrator\AdministratorServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
+        'Bigecko\LaravelTheme\LaravelThemeServiceProvider',
 
 	),
 
@@ -197,6 +198,7 @@ return array(
 
 		'Confide'           => 'Zizaco\Confide\Facade',
         'Entrust'           => 'Zizaco\Entrust\EntrustFacade',
+        'Theme'             => 'Bigecko\LaravelTheme\Facade',
 
     ),
 
