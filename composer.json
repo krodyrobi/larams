@@ -11,7 +11,8 @@
 		"zizaco/entrust": "1.2.*@dev",
         "frozennode/administrator": "dev-master",
         "barryvdh/laravel-ide-helper": "~1.11",
-		"cviebrock/eloquent-sluggable": "~2.0"
+		"cviebrock/eloquent-sluggable": "~2.0",
+        "bigecko/laravel-theme": "dev-master"
 	},
 	"require-dev": {
     		"way/generators": "~2.0"
@@ -21,7 +22,6 @@
 			"app/commands",
 			"app/controllers",
 			"app/models",
-            "app/views/composers",
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
