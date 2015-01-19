@@ -6,6 +6,8 @@ Route::get('/', array( 'as' => 'home', 'before' => 'auth', function() {
 }));
 
 
+Route::get('/','AllPostsController@index');
+
 Route::get('users/create', 'UsersController@create');
 Route::post('users', 'UsersController@store');
 Route::get('users/login', 'UsersController@login');

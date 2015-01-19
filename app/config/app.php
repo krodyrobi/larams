@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -128,6 +128,7 @@ return array(
         'Frozennode\Administrator\AdministratorServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Bigecko\LaravelTheme\LaravelThemeServiceProvider',
+        'Way\Generators\GeneratorsServiceProvider',
 
 	),
 
