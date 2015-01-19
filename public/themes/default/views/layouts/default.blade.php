@@ -19,7 +19,7 @@
         </div>
 
         @foreach($posts as $post)
-            @if ($post->status='published')
+            @if ('published'== $post->status)
                 <div class="row">
                     <div class="span8">
                         <div class="row span 8">
@@ -37,7 +37,9 @@
                     </div>
                 </div>
             @endif
+
         @endforeach
+        {{ $posts->links()  }}
 
 
 
