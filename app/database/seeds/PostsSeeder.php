@@ -32,6 +32,34 @@ class PostsSeeder extends Seeder {
         $post->author_id = $moderator->id;
         $post->status = 'published';
         $post->save();
+
+        $post = new Post;
+        $post->title = 'Random title published';
+        $post->body = 'RANDOM text for a post body #4';
+        $post->author_id = $admin->id;
+        $post->status = 'published';
+        $post->save();
+
+        $post = new Post;
+        $post->title = 'Random title published';
+        $post->body = 'RANDOM text for a post body #5';
+        $post->author_id = $admin->id;
+        $post->status = 'published';
+        $post->save();
+
+        $post = new Post;
+        $post->title = 'Random title published';
+        $post->body = 'RANDOM text for a post body #6';
+        $post->author_id = $admin->id;
+        $post->status = 'published';
+        $post->save();
+
+        $post = new Post;
+        $post->title = 'Random title published';
+        $post->body = 'RANDOM text for a post body #7';
+        $post->author_id = $admin->id;
+        $post->status = 'published';
+        $post->save();
 	}
 
 }
