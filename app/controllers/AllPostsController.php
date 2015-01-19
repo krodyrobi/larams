@@ -10,7 +10,8 @@ class AllPostsController extends Controller {
 	 */
 	public function index()
 	{
-		return View::make('layouts/default');
+        $posts=Post::all();
+		return View::make('layouts/default')->with('posts', $posts);
     }
 
 

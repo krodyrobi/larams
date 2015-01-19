@@ -18,6 +18,27 @@
             @yield('content')
         </div>
 
+        @foreach($posts as $post)
+            <div class="row">
+                <div class="span8">
+                    <div class="row span 8">
+                        <h4><stong>{{ $post->title }}</stong></h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span6">
+                    <p>
+                        {{ substr($post->body, 0, 120).'[..]' }}
+                    </p>
+                </div>
+            </div>
+        @endforeach
+
+
+
+
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     </body>
