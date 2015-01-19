@@ -52,8 +52,9 @@ return array(
 	 *	)
 	 */
 	'menu' => array(
-        'users',
         'posts',
+        'users',
+        'Security' => array('roles', 'permissions'),
         'Settings' => array('settings.site')
     ),
 

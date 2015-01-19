@@ -36,6 +36,11 @@ class PermissionsSeeder extends Seeder {
         $managePosts->display_name = 'Manage Posts';
         $managePosts->save();
 
+        $manageSecurity = new Permission;
+        $manageSecurity->name = 'manage_security';
+        $manageSecurity->display_name = 'Manage Security';
+        $manageSecurity->save();
+
         $manageUsers = new Permission;
         $manageUsers->name = 'manage_users';
         $manageUsers->display_name = 'Manage Users';
@@ -47,7 +52,7 @@ class PermissionsSeeder extends Seeder {
         $manageSite->save();
 
         //$subscriber->perms()->sync(array());
-        $admin->perms()->sync(array($managePosts->id, $manageUsers->id, $manageSite->id));
+        $admin->perms()->sync(array($managePosts->id, $manageUsers->id, $manageSite->id, $manageSecurity->id));
         $moderator->perms()->sync(array($managePosts->id));
     }
 } 
