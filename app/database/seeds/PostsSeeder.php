@@ -15,6 +15,7 @@ class PostsSeeder extends Seeder {
         $post = new Post;
         $post->title = 'Random title';
         $post->body = 'RANDOM text for a post body';
+        $post->status= 'draft';
         $admin->posts()->save($post);
 
 
@@ -27,7 +28,7 @@ class PostsSeeder extends Seeder {
 
         $post = new Post;
         $post->title = 'Random title published by moderator';
-        $post->body = 'RANDOM text for a post body #2';
+        $post->body = 'RANDOM text for a post body #3';
         $post->author_id = $moderator->id;
         $post->status = 'published';
         $post->save();
