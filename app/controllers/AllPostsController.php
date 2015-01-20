@@ -11,7 +11,7 @@ class AllPostsController extends Controller {
 	public function index()
 	{
         $posts = Post::paginate(5);
-		return View::make('layouts/default')->with('posts', $posts);
+		return View::make('layouts/index')->with('posts', $posts);
     }
 
 
