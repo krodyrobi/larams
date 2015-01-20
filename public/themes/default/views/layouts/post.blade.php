@@ -5,7 +5,6 @@
         <div class="span8">
             <div class="row span 8">
                 <h4><strong>{{ $post->title }}</strong></h4>
-                    {{ $post->status }}
             </div>
         </div>
     </div>
