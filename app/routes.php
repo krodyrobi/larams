@@ -20,6 +20,7 @@ Route::post('users/reset_password', 'UsersController@doResetPassword');
 Route::get('users/logout', 'UsersController@logout');
 
 Route::get('article/{id}', 'PostController@show');
+Route::get('author/{id}', 'UsersController@show');
 
 
 Route::get('test', function() {
