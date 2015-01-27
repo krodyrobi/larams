@@ -14,8 +14,14 @@ class CreatePostsTable extends Migration {
         Schema::create('posts', function(Blueprint $table) {
             $table->increments('id');
             $table->string('title');
-            $table->text('body');
-            $table->enum('status', array('draft', 'published'))->default('draft');
+            $table->text('summary');
+            $table->text('content');
+            $table->enum('status', array('DRAFT', 'APPROVED'))->default('DRAFT');
+            $table->string('page_title');
+            $table->text('meta_description');
+            $table->text('meta_keywords');
+            $table->dateTime('published_date')->nullable();
+            $table->dateTime('deleted_at')->nullable();
             $table->timestamps();
         });
 	}

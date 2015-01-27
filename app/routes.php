@@ -1,13 +1,5 @@
 <?php
 
-
-Route::get('/', array( 'as' => 'home', 'before' => 'auth', function() {
-	return View::make('layouts.default');
-}));
-
-
-Route::get('/','AllPostsController@index');
-
 Route::get('users/create', 'UsersController@create');
 Route::post('users', 'UsersController@store');
 Route::get('users/login', 'UsersController@login');
@@ -19,10 +11,14 @@ Route::get('users/reset_password/{token}', 'UsersController@resetPassword');
 Route::post('users/reset_password', 'UsersController@doResetPassword');
 Route::get('users/logout', 'UsersController@logout');
 
-Route::get('article/{id}', 'PostController@show');
+
+Route::get('/', array( 'as' => 'home',  'uses' => 'PostsController@index'));
+Route::get('article/{slug}', 'PostsController@show');
+Route::get('article/{year}/{month}', 'PostsController@indexByYearMonth');
+
 Route::get('author/{id}', 'UsersController@show');
 
 
-Route::get('test', function() {
+Route::get('test', function () {
     return View::make('hello');
 });

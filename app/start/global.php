@@ -79,5 +79,12 @@ App::down(function () {
 require app_path() . '/filters.php';
 require app_path() . '/helpers.php';
 
+
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
+App::error(function(ModelNotFoundException $e) {
+    return Response::make('Not Found', 404);
+});
+
 load_administrator_settings();
 Theme::init(Config::get('settings.site.theme'));
