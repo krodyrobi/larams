@@ -134,4 +134,11 @@ class UsersController extends Controller {
 
         return Redirect::to('/');
     }
+
+
+    public function show($id)
+    {
+        $user = User::find($id);
+        return View::make('layouts/author', array('user' => $user));
+    }
 }

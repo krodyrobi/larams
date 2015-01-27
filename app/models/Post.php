@@ -32,4 +32,9 @@ class Post extends Eloquent implements SluggableInterface {
     public function author() {
         return $this->belongsTo('User', 'author_id', 'id');
     }
+
+    public function scopedStatus($query, $status)
+    {
+        return $query->where('status', '=', $status);
+    }
 } 

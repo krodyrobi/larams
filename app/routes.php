@@ -6,6 +6,8 @@ Route::get('/', array( 'as' => 'home', 'before' => 'auth', function() {
 }));
 
 
+Route::get('/','AllPostsController@index');
+
 Route::get('users/create', 'UsersController@create');
 Route::post('users', 'UsersController@store');
 Route::get('users/login', 'UsersController@login');
@@ -16,6 +18,9 @@ Route::post('users/forgot_password', 'UsersController@doForgotPassword');
 Route::get('users/reset_password/{token}', 'UsersController@resetPassword');
 Route::post('users/reset_password', 'UsersController@doResetPassword');
 Route::get('users/logout', 'UsersController@logout');
+
+Route::get('article/{id}', 'PostController@show');
+Route::get('author/{id}', 'UsersController@show');
 
 
 Route::get('test', function() {
