@@ -63,20 +63,26 @@ return array(
             'title' => 'Confirmed',
             'type'  => 'bool'
         ),
+        'password'  => array(
+            'type' => 'password'
+        ),
+        'password_confirmation'  => array(
+            'type' => 'password'
+        )
     ),
 
 
-    'permission'=> function() {
+    'permission' => function() {
         return Entrust::can('manage_users');
     },
 
 
-    'action_permissions'=> array(
-        'update' => function($model) {
-            return false;
-        },
-        'create' => function($model) {
-            return false;
-        }
+    'rules' => array(
+
     ),
+
+
+    'link' => function($model) {
+        return $model->getUrl();
+    }
 );

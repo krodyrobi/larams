@@ -12,7 +12,8 @@
         "frozennode/administrator": "dev-master",
         "barryvdh/laravel-ide-helper": "~1.11",
 		"cviebrock/eloquent-sluggable": "~2.0",
-        "bigecko/laravel-theme": "dev-master"
+        "bigecko/laravel-theme": "dev-master",
+        "fzaninotto/faker": "1.4.*"
 	},
 	"require-dev": {
     		"way/generators": "~2.0"

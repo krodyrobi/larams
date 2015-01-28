@@ -26,4 +26,9 @@ class User extends Eloquent implements ConfideUserInterface {
         }
         return $date;
     }
+
+
+    public function getUrl() {
+        return URL::action('UsersController@show', [$this->id]);
+    }
 }
