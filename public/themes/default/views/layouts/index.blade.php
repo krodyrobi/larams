@@ -25,7 +25,14 @@
                     &nbsp;&nbsp;
                 </div>
             </div>
+
+            <hr>
+            <img src="https://placehold.it/900x300" class="img-responsive" />
+            <br />
+            <p>{{ $post->summary }}</p>
+            <p class="text-right">{{ HTML::link($post->getUrl(), 'continue reading..') }}</p>
         </article>
+
 
     @endforeach
 
