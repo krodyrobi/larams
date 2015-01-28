@@ -1,3 +1,7 @@
+@extends('layouts.default')
+
+@section('content')
+
 <form method="POST" action="{{ URL::to('/users/forgot_password') }}" accept-charset="UTF-8">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
 
@@ -19,3 +23,5 @@
         <div class="alert">{{{ Session::get('notice') }}}</div>
     @endif
 </form>
+
+@stop

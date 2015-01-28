@@ -1,3 +1,7 @@
+@extends('layouts.default')
+
+@section('content')
+
 <form method="POST" action="{{{ URL::to('users') }}}" accept-charset="UTF-8">
     <input type="hidden" name="_token" value="{{{ Session::getToken() }}}">
     <fieldset>
@@ -36,3 +40,5 @@
 
     </fieldset>
 </form>
+
+@stop
