@@ -14,7 +14,7 @@
             <p>
                 {{ $post->body }}
             </p>
-            Created by {{ HTML::link('author/'.$post->author_id, $post->author_id)}} at {{$post->created_at}}
+            Created by {{ HTML::link('author/'.$post->author_id, $author->username)}} at {{$post->created_at}}
         </div>
     </div>
 @stop

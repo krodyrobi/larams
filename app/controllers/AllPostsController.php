@@ -10,7 +10,7 @@ class AllPostsController extends Controller {
 	 */
 	public function index()
 	{
-        $posts = Post::paginate(5);
+        $posts = Post::where('status', '=', 'published')->with('author')->paginate(5);
 		return View::make('layouts/index')->with('posts', $posts);
     }
 

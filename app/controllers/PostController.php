@@ -45,7 +45,8 @@ class PostController extends Controller {
 	public function show($id)
 	{
 		$post = Post::find($id);
-        return View::make('layouts/post', array('post' => $post));
+        $author = User::find($post->author_id);
+        return View::make('layouts/post', array('post' => $post, 'author' => $author));
 	}
 
 	/**

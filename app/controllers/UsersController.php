@@ -139,6 +139,7 @@ class UsersController extends Controller {
     public function show($id)
     {
         $user = User::find($id);
-        return View::make('layouts/author', array('user' => $user));
+        $posts = Post::all();
+        return View::make('layouts/author', array('user' => $user, 'posts'=> $posts));
     }
 }
