@@ -1,10 +1,29 @@
 @extends('layouts.default')
 
 @section('content')
+<?php
+    $posts_user = 0;
+    $comments_user =0;
+foreach ($posts as $post)
+    if ($post->author->username == $user->username)
+        $posts_user++;
+
+foreach ($comments as $comment)
+    if ($comment->user == $user->username)
+        $comments_user++;
+    ?>
      <div class="row">
          <div class="span12">
             <h1>Welcome to {{ $user->username }}'s personal page! </h1>
          </div>
+     </div>
+
+     <div class="row">
+        <div class="span14">
+            <p>This profile has been created at: {{$user->created_at}} and update at:  {{$user->updated_at}}</p>
+
+            <p>The user has posted <strong>{{$posts_user}}</strong> posts and <strong>{{$comments_user}}</strong> comments.</p>
+        </div>
      </div>
 
     <div class="row">
@@ -53,5 +72,11 @@
     @endif
 
 @endforeach
+
+    <div class="row">
+        <div class="span8">
+                <h3><strong>Latest comments written by '{{ $user->username }}':</strong></h3>
+        </div>
+    </div>
 
 @stop
