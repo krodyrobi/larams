@@ -149,9 +149,8 @@ class UsersController extends Controller {
                 $query->with('commentable')->limit($items_per_page);
             }
         ))->find($id);
-        //NOT working the way it should
-        //$posts = Post::all()->sortBy('published_at');
-        //$comments = Comment::all();
+
+
         return View::make('layouts/author', array('user' => $user));//, 'posts'=> $posts, 'comments' => $comments));
     }
 }
