@@ -79,4 +79,24 @@ foreach ($comments as $comment)
         </div>
     </div>
 
+<?php $i=0; ?>
+
+@foreach ($comments as $comment)
+    @if($comment->user == $user->username)
+        <li class="comment" id="comment-{{ $comment->id }}">
+        	<p class="comment--text">
+        		{{ nl2br(htmlspecialchars($comment->comment, null, 'UTF-8')) }}
+            </p>
+        	<p class="comment--author">
+        		{{{ $comment->user->username }}}
+        	</p>
+        	<p class="comment--date">
+        		{{ $comment->getDate() }}
+        	</p>
+        </li>
+
+
+@endif
+@endforeach
+
 @stop

@@ -138,7 +138,8 @@ class UsersController extends Controller {
 
     public function show($id) {
         $user = User::find($id);
-        $posts = Post::all();
+        //NOT working the way it should
+        $posts = Post::all()->sortBy('published_at');
         $comments = Comment::all();
         return View::make('layouts/author', array('user' => $user, 'posts'=> $posts, 'comments' => $comments));
     }
