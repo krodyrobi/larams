@@ -10,7 +10,7 @@
         </div>
     </div>
 @foreach($posts as $post)
-    @if ($user->id== $post->author_id)
+    @if ($user->id == $post->author_id)
 
     <div class="row">
         <div class="span6">
