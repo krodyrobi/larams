@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>@yield('title', Config::get('settings.site.site_name'))</title>
         <meta name="description" content="@yield('meta_description', Config::get('settings.site.meta_description'))">
@@ -13,7 +13,7 @@
         {{ HTML::style('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/css/bootstrap.min.css') }}
         {{ HTML::style('//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css') }}
         @yield('styles')
-        {{ HTML::style('public/css/app.css') }}
+        {{ HTML::style('css/app.css') }}
 
         {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js') }}
         <script>
@@ -25,26 +25,16 @@
         </script>
     </head>
     <body>
-        @yield('navbar.prepend')
-        @include('partials.navbar')
-        @yield('navbar.append')
+        @yield('header.prepend')
+        @include('partials.header')
+        @yield('header.append')
 
-        <div id="main">
-            <div class="container">
-                @yield('main.prepend')
-
-                <div id="content">
-                    @yield('content')
-                </div><!-- ./ #content -->
-
-                <div id="sidebar">
-                    @yield('sidebar')
-                </div><!-- ./ #sidebar -->
-
-                @yield('main.append')
-
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">@yield('content')</div>
+                <div class="col-md-4">@yield('sidebar')</div>
             </div>
-        </div><!-- ./ #main -->
+        </div>
 
         @yield('footer.prepend')
         @include('partials.footer')
@@ -54,7 +44,7 @@
         {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js') }}
         {{ HTML::script('//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.2/js/bootstrap.min.js') }}
         @yield('scripts')
-        {{ HTML::script('public/js/app.js') }}
+        {{ HTML::script('js/app.js') }}
 
     </body>
 </html>

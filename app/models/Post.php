@@ -68,6 +68,13 @@ class Post extends Eloquent implements SluggableInterface {
     }
 
 
+    public function getArchiveUrl() {
+        $date = date('Y m' , strtotime($this->published_date));
+
+        return URL::action('PostsController@indexByYearMonth', explode(' ', $date));
+    }
+
+
     public function getDate() {
         return date(Config::get($this->configSettings() . '.date_format', 'j\<\s\u\p\>S\<\/\s\u\p\> F \'y'), strtotime($this->published_date));
     }
@@ -104,6 +111,8 @@ class Post extends Eloquent implements SluggableInterface {
 
 
     public function perPage() {
-        return (intval($this->configSettings() . '.per_page') != 0) ?: 10;
+        $config = intval(Config::get($this->configSettings() . '.index_per_page', 10));
+
+        return $config;
     }
 }
