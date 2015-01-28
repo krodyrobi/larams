@@ -33,6 +33,7 @@
         <p>{{ $post->content }}</p>
     </article>
 
+
     @include('partials.adjacent')
     @include('partials.comments.comments', array('commentable' => $post, 'comments' => $post->comments))
 @stop

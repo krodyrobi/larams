@@ -77,8 +77,6 @@ class Comment extends Eloquent {
         $date = $this->created_at;
         $dateFormat = Config::get('settings.site.date_format', 'j\<\s\u\p\>S\<\/\s\u\p\> F \'y');
 
-        $date = $date->formatLocalized($dateFormat);
-
-        return $date;
+        return date($dateFormat, strtotime($date));
     }
 }

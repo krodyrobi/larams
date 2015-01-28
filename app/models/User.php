@@ -17,6 +17,9 @@ class User extends Eloquent implements ConfideUserInterface {
         return $this->hasMany('Post', 'author_id');
     }
 
+    public function comments() {
+        return $this->hasMany('Comment', 'user_id');
+    }
 
     public function getShortCreatedAtAttribute() {
         $date = $this->getAttribute('created_at');

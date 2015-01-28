@@ -137,10 +137,21 @@ class UsersController extends Controller {
 
 
     public function show($id) {
-        $user = User::find($id);
+        $items_per_page = Config::get('settings.site.index_per_page', 10);
+
+        $user = User::with(array(
+            'posts' => function($query) use ($items_per_page) {
+                $query->live()
+                    ->orderBy('posts.published_date', 'desc')
+                    ->limit($items_per_page);
+            },
+            'comments' => function($query) use ($items_per_page)  {
+                $query->with('commentable')->limit($items_per_page);
+            }
+        ))->find($id);
         //NOT working the way it should
-        $posts = Post::all()->sortBy('published_at');
-        $comments = Comment::all();
-        return View::make('layouts/author', array('user' => $user, 'posts'=> $posts, 'comments' => $comments));
+        //$posts = Post::all()->sortBy('published_at');
+        //$comments = Comment::all();
+        return View::make('layouts/author', array('user' => $user));//, 'posts'=> $posts, 'comments' => $comments));
     }
 }
