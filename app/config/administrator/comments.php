@@ -69,6 +69,10 @@ return array(
         'direction' => 'desc',
     ),
 
+    'permission' => function() {
+        return Entrust::can('manage_comments');
+    },
+
     'action_permissions'=> array(
         'create' => function($model) {
             return false;
