@@ -76,16 +76,13 @@ return array(
         return Entrust::can('manage_users');
     },
 
+
     'rules' => array(
 
     ),
 
-    'action_permissions' => array(/*
-        'update' => function($model) {
-            return false;
-        },
-        'create' => function($model) {
-            return false;
-        }*/
-    ),
+
+    'link' => function($model) {
+        return $model->getUrl();
+    }
 );

@@ -5,21 +5,38 @@
 @stop
 
 @section('content')
-    <div class="row">
-        <div class="span8">
-            <div class="row span 8">
-                <h4><strong>{{ $post->title }}</strong></h4>
+    <article>
+        <h2>{{ HTML::link($post->getUrl(), $post->title) }}</h2>
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <!-- category template
+                <span class="glyphicon glyphicon-folder-open"></span>&nbsp;<a href="#">Signs</a>
+                    &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-bookmark"></span> <a href="#">Aries</a>, <a href="#">Fire</a>, <a href="#">Mars</a>
+                -->
+            </div>
+            <div class="col-sm-6 col-md-6">
+
+                <span class="glyphicon glyphicon-user"></span>
+                {{ HTML::link($post->author->getUrl(), ucwords($post->author->username)) }}
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-time"></span>
+                <a href="{{ $post->getArchiveUrl() }}">{{ $post->getDate() }}</a>
+                &nbsp;&nbsp;
+                <span class="glyphicon glyphicon-pencil"></span> {{ HTML::link($post->getUrl().'#comments', 'Comments') }}
+                &nbsp;&nbsp;
             </div>
         </div>
-    </div>
+        <hr>
+        <img src="https://placehold.it/900x300" class="img-responsive" />
+        <br />
+        <p>{{ $post->content }}</p>
+    </article>
 
-    <div class="row">
-        <div class="span6">
-            <p>
-                {{ $post->content }}
-            </p>
-            Created by {{ HTML::link('author/'.$post->author_id, $post->author_id)}} at {{$post->created_at}}
-        </div>
-    </div>
+    @include('partials.adjacent')
+    @include('partials.comments.comments', array('commentable' => $post, 'comments' => $post->comments))
 @stop
 
+@section('sidebar')
+    @include('partials.archives')
+@stop

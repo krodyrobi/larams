@@ -20,12 +20,15 @@
             </form>
 
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index">Home</a></li>
-                <li class="{{ Route::is('contact') ? 'active' : '' }}"><a href="contact">Contact</a></li>
-                <li class="{{ Route::is('about') ? 'active' : '' }}"><a href="about">About</a></li>
+                <li class="{{ Route::is('/') ? 'active' : '' }}"><a href="{{ URL::to('/') }}">Home</a></li>
+                <li class="{{ Route::is('contact') ? 'active' : '' }}"><a href="{{ URL::to('contact') }}">Contact</a></li>
+                <li class="{{ Route::is('about') ? 'active' : '' }}"><a href="{{ URL::to('about') }}">About</a></li>
                 @if( !Auth::check() )
                     <li class="{{ Route::is('users/login') ? 'active' : '' }}">
                         {{ HTML::link(action('UsersController@doLogin'), 'Login') }}
+                    </li>
+                    <li class="{{ Route::is('user/create') ? 'active' : '' }}">
+                        {{ HTML::link(action('UsersController@create'), 'Register') }}
                     </li>
                 @else
                     <li>

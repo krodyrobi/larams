@@ -10,8 +10,8 @@
                         @foreach ($months as $monthNumber => $month)
                             <li class="list-group-item archives--month{{ isset($selectedYear) && $year == $selectedYear && isset($selectedMonth) && $monthNumber == $selectedMonth ? ' archives--month__active' : '' }}">
                                 <a href="{{ action('PostsController@indexByYearMonth', array('year' => $year, 'month' => $monthNumber)) }}">
-                                    {{ $month['monthname'] }}
                                     <span class="badge">{{ $month['count'] }}</span>
+                                    {{ $month['monthname'] }}
                                 </a>
                             </li>
                         @endforeach

@@ -15,6 +15,8 @@ Route::get('users/logout', 'UsersController@logout');
 Route::get('/', array( 'as' => 'home',  'uses' => 'PostsController@index'));
 Route::get('article/{slug}', 'PostsController@show');
 Route::get('article/{year}/{month}', 'PostsController@indexByYearMonth');
+Route::post('comments', array('before' => array('csrf','auth' ),
+        'uses' => 'CommentsController@create'));
 
 Route::get('author/{id}', 'UsersController@show');
 

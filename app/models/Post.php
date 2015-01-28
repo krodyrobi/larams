@@ -115,4 +115,9 @@ class Post extends Eloquent implements SluggableInterface {
 
         return $config;
     }
+
+
+    public function comments() {
+        return $this->morphMany('Comment', 'commentable');
+    }
 }

@@ -54,6 +54,7 @@ return array(
 	'menu' => array(
         'posts',
         'users',
+        'comments',
         'Security' => array('roles', 'permissions'),
         'Settings' => array('settings.site')
     ),

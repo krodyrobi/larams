@@ -26,7 +26,7 @@ class PostsController extends Controller {
     public function show($slug) {
         $post = $this->post->live()
             ->where($this->post->getTable().'.slug', '=', $slug)
-            ->with('author')
+            ->with(['author', 'comments'])
             ->firstOrFail();
 
         $newer = $older = false;

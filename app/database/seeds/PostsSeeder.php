@@ -14,10 +14,8 @@ class PostsSeeder extends Seeder {
 
         $this->author_ids = [$admin->id, $moderator->id];
 
-        for ($i = 0; $i < 10; $i++)
+        for ($i = 0; $i < 1000; $i++)
             $this->create($i);
-
-        echo 'Posts seeded' . PHP_EOL;
     }
 
     protected function create($index) {
