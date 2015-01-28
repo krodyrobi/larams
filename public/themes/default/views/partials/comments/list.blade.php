@@ -8,12 +8,10 @@
 				<p class="comment--text">
 					{{ nl2br(htmlspecialchars($comment->comment, null, 'UTF-8')) }}
 				</p>
-				<p class="comment--author">
-					{{{ $comment->user->username }}}
+				<p class="comment--author--date">
+					By {{{ $comment->user->username }}} at {{ $comment->getDate() }}
 				</p>
-				<p class="comment--date">
-					{{ $comment->getDate() }}
-				</p>
+
 			</li>
 		@endforeach
 	</ol>

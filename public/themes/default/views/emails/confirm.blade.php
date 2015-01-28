@@ -1,3 +1,7 @@
+@extends('layouts.default')
+
+@section('content')
+
 <h1>{{ Lang::get('confide::confide.email.account_confirmation.subject') }}</h1>
 
 <p>{{ Lang::get('confide::confide.email.account_confirmation.greetings', array('name' => $user['username'])) }},</p>
@@ -8,3 +12,5 @@
 </a>
 
 <p>{{ Lang::get('confide::confide.email.account_confirmation.farewell') }}</p>
+
+@stop
