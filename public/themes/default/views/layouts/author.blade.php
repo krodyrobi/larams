@@ -37,15 +37,17 @@
         </div>
     </div>
 
-    @foreach( $user->comments as $comment)
+		<ol class="comments--list">
+		@foreach( $user->comments as $comment)
                     <li class="comment" id="comment-{{ $comment->id }}">
                     	<p class="comment--text">
                     		<i> {{ nl2br(htmlspecialchars($comment->comment, null, 'UTF-8')) }} </i> <strong>at</strong>
                     		{{ $comment->getDate() }} <strong>in</strong> {{ HTML::link( $comment->commentable->getUrl()  ,
-                    		 $comment->commentable->title) }};
+                    		 $comment->commentable->title) }}
                         </p>
                     </li>
-    @endforeach
+		@endforeach
+		</ol>
 @stop
 
 @section('sidebar')

@@ -9,7 +9,7 @@
 					{{ nl2br(htmlspecialchars($comment->comment, null, 'UTF-8')) }}
 				</p>
 				<p class="comment--author--date">
-					By {{{ $comment->user->username }}} at {{ $comment->getDate() }}
+					By {{ HTML::link( $comment->user->getUrl(), $comment->user->username ) }} at {{ $comment->getDate() }}
 				</p>
 
 			</li>
