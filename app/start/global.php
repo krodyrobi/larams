@@ -79,9 +79,9 @@ App::down(function () {
 require app_path() . '/filters.php';
 require app_path() . '/helpers.php';
 
+App::bind('confide.user_validator', 'CustomUserValidator');
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
 App::error(function(ModelNotFoundException $e) {
     return Response::make('Not Found', 404);
 });

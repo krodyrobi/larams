@@ -13,11 +13,16 @@ return array(
         'username' => array(
             'title' => 'Username',
         ),
+        'roles' => array(
+            'title' => 'Roles',
+            'relationship' => 'roles',
+            'select' => "(:table).name ",
+        ),
         'email' => array(
             'title' => 'Email',
         ),
         'short_created_at' => array(
-            'title'      => 'Created on',
+            'title' => 'Created on',
             'sort_field' => 'created_at',
         ),
         'confirmed' => array(
@@ -38,51 +43,75 @@ return array(
         ),
         'confirmed' => array(
             'title' => 'Confirmed',
-            'type'  => 'bool'
+            'type' => 'bool'
         ),
         'created_at' => array(
             'title' => 'Created on',
-            'type'  => 'datetime'
+            'type' => 'datetime'
         ),
+        'roles' => array(
+            'type' => 'relationship',
+            'title' => 'Roles',
+            'name_field' => 'name',
+        )
     ),
 
 
     'edit_fields' => array(
         'id' => array(
             'title' => 'ID',
-            'type'  => 'key'
+            'type' => 'key'
         ),
         'username' => array(
             'title' => 'Username',
-            //'editable' => false,
+            'editable' => function ($model) {
+                return !$model->exists;
+            },
         ),
         'email' => array(
             'title' => 'Email',
+            'editable' => function ($model) {
+                return !$model->exists;
+            },
         ),
         'confirmed' => array(
             'title' => 'Confirmed',
-            'type'  => 'bool'
+            'type' => 'bool'
         ),
-        'password'  => array(
-            'type' => 'password'
+        'password' => array(
+            'type' => 'password',
+            'title' => 'Password',
+            'visible' => function ($model) {
+                return !$model->exists;
+            },
         ),
-        'password_confirmation'  => array(
-            'type' => 'password'
-        )
+        'password_confirmation' => array(
+            'type' => 'password',
+            'title' => 'Password Confirmation',
+            'visible' => function ($model) {
+                return !$model->exists;
+            },
+        ),
     ),
 
 
-    'permission' => function() {
+    'permission' => function () {
         return Entrust::can('manage_users');
     },
 
 
     'rules' => array(
+        'username' => 'required|alpha_dash|unique',
+        'email'    => 'required|email|unique',
+        'password' => 'required_with:password_confirmation|same:password_confirmation|min:4'
+    ),
 
+    'action_permissions'=> array(
+        'update' => false
     ),
 
 
-    'link' => function($model) {
+    'link' => function ($model) {
         return $model->getUrl();
     }
 );
