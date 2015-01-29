@@ -12,6 +12,7 @@
                 <p class="text-right">{{ HTML::link($post->getUrl(), 'continue reading..') }}</p>
             </article>
 
+				{{ $posts->links()  }}
 @endforeach
 
 @stop
